@@ -8,43 +8,21 @@ import javax.swing.JLabel;
 public class GameLogic {
 	public boolean running = true;
 	public boolean paused = false;
-	public String[] commands = {"rechts", "links", "runter", "dreh rechts", "dreh links"};
-	public String[] icons = {"\u2192", "\u2190", "\u2193", "\u21bb", "\u21ba"};
-	public boolean[][][] blocks = {{{false, false, false, false},
-									{false, false, false, false},
-									{true, true, true, true},
-									{false, false, false, false}}, {
-									
-									{false, false, false, false},
-									{false, false, true, false},
-									{true, true, true, false},
-									{false, false, false, false}}, {
-									
-									{false, false, false, false},
-									{true, true, true, false},
-									{false, false, true, false},
-									{false, false, false, false}}, {
-										
-									{false, false, false, false},
-									{false, true, true, false},
-									{false, true, true, false},
-									{false, false, false, false}}, {
-										
-									{false, true, false, false},
-									{false, true, true, false},
-									{false, false, true, false},
-									{false, false, false, false}}, {
-										
-									{false, false, true, false},
-									{false, true, true, false},
-									{false, false, true, false},
-									{false, false, false, false}}, {
-										
-									{false, false, true, false},
-									{false, true, true, false},
-									{false, true, false, false},
-									{false, false, false, false}}
-									};
+	public String[] commands = {"rechts", "links", "runter", "dreh rechts", "dreh links" };
+	public String[] icons = {"\u2192", "\u2190", "\u2193", "\u21bb", "\u21ba" };
+	public boolean[][][] blocks = { { {false, false, false, false }, {false, false, false, false }, {true, true, true, true }, {false, false, false, false } }, {
+	
+	{false, false, false, false }, {false, false, true, false }, {true, true, true, false }, {false, false, false, false } }, {
+	
+	{false, false, false, false }, {true, true, true, false }, {false, false, true, false }, {false, false, false, false } }, {
+	
+	{false, false, false, false }, {false, true, true, false }, {false, true, true, false }, {false, false, false, false } }, {
+	
+	{false, true, false, false }, {false, true, true, false }, {false, false, true, false }, {false, false, false, false } }, {
+	
+	{false, false, true, false }, {false, true, true, false }, {false, false, true, false }, {false, false, false, false } }, {
+	
+	{false, false, true, false }, {false, true, true, false }, {false, true, false, false }, {false, false, false, false } } };
 	
 	private boolean[][] map;
 	private Color[][] colorMap;
@@ -129,14 +107,14 @@ public class GameLogic {
 				}
 			}
 			
-			if(System.currentTimeMillis() - this.lastCommand > this.tick / 2) { //Commands werden doppelt so oft ausgeführt wie Ticks
+			if(System.currentTimeMillis() - this.lastCommand > this.tick / 2) { // Commands werden doppelt so oft ausgeführt wie Ticks
 				this.lastCommand = System.currentTimeMillis();
 				
 				this.runCommand(this.queue[0]);
 				this.removeCommand(0);
 			}
 			
-			scoreDisplay.setText("Score:" + score); //Displays updaten
+			scoreDisplay.setText("Score:" + score); // Displays updaten
 			gameDisplay.repaint();
 			nextDisplay.repaint();
 			queueDisplay.repaint();
@@ -145,7 +123,7 @@ public class GameLogic {
 		}
 	}
 	
-	private void checkRows() { //Überprüft alle Reihen von unten nach oben und entfernt sie, wenn sie voll sind
+	private void checkRows() { // Überprüft alle Reihen von unten nach oben und entfernt sie, wenn sie voll sind
 		for(int y = 0; y < 20; y++) {
 			if(isRowFull(y)) {
 				removeRow(y);
@@ -155,7 +133,7 @@ public class GameLogic {
 		}
 	}
 	
-	private boolean isRowFull(int index) { //Überprüft die Reihe "index"
+	private boolean isRowFull(int index) { // Überprüft die Reihe "index"
 		boolean result = true;
 		
 		for(int x = 0; x < 10; x++) {
@@ -166,11 +144,11 @@ public class GameLogic {
 		return result;
 	}
 	
-	private void removeRow(int index) { //Entfernt die Reihe und lässt die anderen nachrutschen
+	private void removeRow(int index) { // Entfernt die Reihe und lässt die anderen nachrutschen
 		for(int y = index; y > 0; y--) {
 			for(int x = 0; x < 10; x++) {
-				this.map[x][y] = this.map[x][y-1];
-				this.colorMap[x][y] = this.colorMap[x][y-1];
+				this.map[x][y] = this.map[x][y - 1];
+				this.colorMap[x][y] = this.colorMap[x][y - 1];
 			}
 		}
 	}
@@ -185,7 +163,7 @@ public class GameLogic {
 			}
 		}
 	}
-
+	
 	private void runCommand(String command) {
 		if(command.equalsIgnoreCase("rechts")) {
 			if(this.isFree(1, 0))
@@ -195,7 +173,7 @@ public class GameLogic {
 				this.blockX--;
 		} else if(command.equalsIgnoreCase("dreh rechts")) {
 			this.rotateRight();
-			if(!isFree(0, 0)) { //Wenn Drehung nicht möglich ist, wird versucht, den Block nach links oder nach rechts zu verschieben bis es geht
+			if(!isFree(0, 0)) { // Wenn Drehung nicht möglich ist, wird versucht, den Block nach links oder nach rechts zu verschieben bis es geht
 				int freeX = 0;
 				
 				for(int i = -2; i <= 2; i++) {
@@ -231,7 +209,7 @@ public class GameLogic {
 			this.boost = true;
 		}
 	}
-
+	
 	public void addCommand(String command) {
 		int freeIndex = 0;
 		while(!this.queue[freeIndex].equals("")) {
@@ -259,7 +237,7 @@ public class GameLogic {
 	}
 	
 	public String getIcon(String command) {
-		if(this.isValid(command)) {			
+		if(this.isValid(command)) {
 			for(int i = 0; i < this.commands.length; i++) {
 				if(this.commands[i].equalsIgnoreCase(command))
 					return this.icons[i];
@@ -286,7 +264,7 @@ public class GameLogic {
 		
 		for(int y = 0; y < block.length; y++) {
 			for(int x = 0; x < block.length; x++) {
-				rotatedBlock[y][block.length -1 - x] = block[x][y];
+				rotatedBlock[y][block.length - 1 - x] = block[x][y];
 			}
 		}
 		
@@ -316,7 +294,10 @@ public class GameLogic {
 					try {
 						collides = map[blockX + x + xOffset][blockY + y + yOffset];
 					} catch(ArrayIndexOutOfBoundsException e) {
-						if(blockY + y + yOffset >= 0) { //Nur kollidieren, wenn Block an die linke, rechte oder untere Kante drückt
+						if(blockY + y + yOffset >= 0) { // Nur kollidieren, wenn
+														// Block an die linke,
+														// rechte oder untere
+														// Kante drückt
 							collides = true;
 						} else {
 							collides = false;

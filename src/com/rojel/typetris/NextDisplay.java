@@ -7,7 +7,7 @@ import java.awt.Image;
 
 public class NextDisplay extends Canvas {
 	private static final long serialVersionUID = -4417810579331602535L;
-
+	
 	private GameLogic logic;
 	
 	private Image bufImage;
@@ -21,7 +21,7 @@ public class NextDisplay extends Canvas {
 		g.setColor(Color.WHITE);
 		g.fillRect(0, 0, 120, 120);
 		
-		try {			
+		try {
 			for(int y = 0; y < 4; y++) {
 				for(int x = 0; x < 4; x++) {
 					if(logic.getNext()[x][y]) {
@@ -40,7 +40,7 @@ public class NextDisplay extends Canvas {
 		g.drawRect(0, 0, 119, 119);
 	}
 	
-	public void update(Graphics g) { //Double-Buffering
+	public void update(Graphics g) { // Double-Buffering
 		int w = this.getSize().width;
 		int h = this.getSize().height;
 		

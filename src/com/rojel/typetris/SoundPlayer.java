@@ -91,7 +91,7 @@ public class SoundPlayer implements MetaEventListener {
 		sequencer.stop();
 		sequencer.close();
 	}
-
+	
 	public void meta(MetaMessage event) {
 		if(event.getType() == 47) {
 			this.track++;

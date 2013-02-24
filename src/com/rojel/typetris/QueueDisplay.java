@@ -10,7 +10,7 @@ import java.awt.event.MouseListener;
 
 public class QueueDisplay extends Canvas implements MouseListener {
 	private static final long serialVersionUID = -4664196160421993186L;
-
+	
 	private GameLogic logic;
 	
 	private Image bufImage;
@@ -33,7 +33,7 @@ public class QueueDisplay extends Canvas implements MouseListener {
 		
 		g.setColor(Color.BLACK);
 		
-		try {			
+		try {
 			for(int i = 0; i < this.logic.getQueue().length; i++) {
 				String command = this.logic.getQueue()[i];
 				
@@ -50,7 +50,7 @@ public class QueueDisplay extends Canvas implements MouseListener {
 		g.drawRect(0, 0, 119, 474);
 	}
 	
-	public void update(Graphics g) { //Double-Buffering
+	public void update(Graphics g) { // Double-Buffering
 		int w = this.getSize().width;
 		int h = this.getSize().height;
 		
@@ -68,26 +68,26 @@ public class QueueDisplay extends Canvas implements MouseListener {
 		
 		g.drawImage(bufImage, 0, 0, this);
 	}
-
+	
 	public void mouseClicked(MouseEvent arg0) {
 		logic.removeCommand((int) (arg0.getY() / 50));
 	}
-
+	
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		

@@ -31,65 +31,66 @@ public class Typetris extends JFrame implements ActionListener {
 	
 	public Typetris() {
 		super("Typetris");
-        this.setSize(440, 685);
-        this.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width - 440) / 2, (Toolkit.getDefaultToolkit().getScreenSize().height - 685) / 2);
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
-        this.setLayout(null);
-        
-        try {
+		this.setSize(440, 685);
+		this.setLocation((Toolkit.getDefaultToolkit().getScreenSize().width - 440) / 2, (Toolkit.getDefaultToolkit().getScreenSize().height - 685) / 2);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
+		this.setLayout(null);
+		
+		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
+		} catch(Exception e) {
 			System.out.println("L&F fehlgeschlagen.");
 		}
-        
-        gameDisplay = new GameDisplay();
-        gameDisplay.setBounds(5, 0, 300, 600);
-        this.add(gameDisplay);
-        
-        nextDisplay = new NextDisplay();
-        nextDisplay.setBounds(310, 0, 120, 120);
-        this.add(nextDisplay);
-        
-        queueDisplay = new QueueDisplay();
-        queueDisplay.setBounds(310, 125, 150, 475);
-        this.add(queueDisplay);
-        
-        run = new JButton("GO");
-        run.setBounds(310, 605, 55, 50);
-        run.addActionListener(this);
-        this.add(run);
-        
-        help = new JButton("Hilfe");
-        help.setBounds(370, 605, 60, 50);
-        help.addActionListener(this);
-        this.add(help);
-        
-        input = new JTextField();
-        input.setBounds(155, 605, 150, 50);
-        Font inputFont = new Font("Lucida Console", Font.PLAIN, 20);
-        input.setFont(inputFont);
-        input.addActionListener(this);
-        this.add(input);
-        
-        score = new JLabel("Score:0");
-        score.setBounds(5, 605, 145, 50);
-        score.setFont(inputFont);
-        this.add(score);
-        
-        setVisible(true);
-        
-        while(true) {
-        	 logic = new GameLogic(gameDisplay, nextDisplay, queueDisplay, score);
-             logic.run();
-             
-             while(logic.running) {
-             }
-             
-             JOptionPane.showMessageDialog(this, "Spiel beendet\n\nDeine Punktzahl: " + logic.getScore(), "Spiel beendet", JOptionPane.PLAIN_MESSAGE);
-        }
+		
+		gameDisplay = new GameDisplay();
+		
+		gameDisplay.setBounds(5, 0, 300, 600);
+		this.add(gameDisplay);
+		
+		nextDisplay = new NextDisplay();
+		nextDisplay.setBounds(310, 0, 120, 120);
+		this.add(nextDisplay);
+		
+		queueDisplay = new QueueDisplay();
+		queueDisplay.setBounds(310, 125, 150, 475);
+		this.add(queueDisplay);
+		
+		run = new JButton("GO");
+		run.setBounds(310, 605, 55, 50);
+		run.addActionListener(this);
+		this.add(run);
+		
+		help = new JButton("Hilfe");
+		help.setBounds(370, 605, 60, 50);
+		help.addActionListener(this);
+		this.add(help);
+		
+		input = new JTextField();
+		input.setBounds(155, 605, 150, 50);
+		Font inputFont = new Font("Lucida Console", Font.PLAIN, 20);
+		input.setFont(inputFont);
+		input.addActionListener(this);
+		this.add(input);
+		
+		score = new JLabel("Score:0");
+		score.setBounds(5, 605, 145, 50);
+		score.setFont(inputFont);
+		this.add(score);
+		
+		setVisible(true);
+		
+		while(true) {
+			logic = new GameLogic(gameDisplay, nextDisplay, queueDisplay, score);
+			logic.run();
+			
+			while(logic.running) {
+			}
+			
+			JOptionPane.showMessageDialog(this, "Spiel beendet\n\nDeine Punktzahl: " + logic.getScore(), "Spiel beendet", JOptionPane.PLAIN_MESSAGE);
+		}
 	}
-
+	
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == input || e.getSource() == run) {
 			String command = input.getText();
