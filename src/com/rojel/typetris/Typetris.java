@@ -104,7 +104,7 @@ public class Typetris extends JFrame implements ActionListener {
 			}
 		} else if(e.getSource() == help) {
 			logic.paused = true;
-			JOptionPane.showMessageDialog(this, "Typetris - Ein Spiel von Robert Heedt\nInspiriert vom Langzeitklassiker TETRIS\n\nTypetris ist eine Variation vom altbekannten TETRIS, bei dem es darum geht,\ndie herunterfallenden Blöcke so zu stapeln, dass sie die Decke nicht erreichen.\nWenn das passiert, ist das Spiel vorbei. Doch im Gegensatz zum Original sind die Blöcke nicht direkt kontrollierbar,\nsondern müssen durch eingetippte Befehle gesteuert werden. Zulässige Befehle sind:\n\nlinks, rechts, runter, dreh links, dreh rechts\n\nBereits eingegebene Befehle können mit einem Linksklick auf den Befehl wieder aus der Befehlsschleife entfernt werden.", "Hilfe", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(this, "Typetris - Ein Spiel von Robert Heedt\nInspiriert vom Langzeitklassiker TETRIS\n\nTypetris ist eine Variation des altbekannten TETRIS, bei dem es darum geht,\ndie herunterfallenden Blöcke so zu stapeln, dass sie die Decke nicht erreichen.\nWenn das passiert, ist das Spiel vorbei. Doch im Gegensatz zum Original sind die Blöcke nicht direkt kontrollierbar,\nsondern müssen durch eingetippte Befehle gesteuert werden. Zulässige Befehle sind:\n\nlinks, rechts, runter, dreh links, dreh rechts\n\nBereits eingegebene Befehle können mit einem Linksklick auf den Befehl wieder aus der Befehlsschleife entfernt werden.", "Hilfe", JOptionPane.PLAIN_MESSAGE);
 			logic.paused = false;
 		}
 	}
