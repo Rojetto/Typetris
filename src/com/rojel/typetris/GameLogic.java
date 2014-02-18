@@ -69,7 +69,7 @@ public class GameLogic {
 		
 		this.lastTick = System.currentTimeMillis();
 		this.lastCommand = System.currentTimeMillis();
-		this.startTick = 3000;
+		this.startTick = 2000;
 		this.tick = startTick;
 		
 		this.soundPlayer = new SoundPlayer();
@@ -100,7 +100,7 @@ public class GameLogic {
 						soundPlayer.playSound(SoundPlayer.DROP);
 						this.addBlockToMap();
 						this.nextBlock();
-						this.tick = (int) (this.tick * 0.98);
+						this.tick = (int) (this.tick * 0.92);
 						this.score = this.score + 10;
 						this.boost = false;
 					}
